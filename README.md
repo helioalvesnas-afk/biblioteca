@@ -1,27 +1,12 @@
-# ToDoApp
+Execute os seguintes passos abaixo no terminal:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
+1) git clone https://github.com/helioalvesnas-afk/biblioteca.git
+2) cd biblioteca
+3) docker compose up -d --build
+4) Acesso ao sistema
+   a) Escolha um navegador web e informe o endereço: http://localhost:4200
+   b) Usuário: admin
+   c) Senha: 123456
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Observação: após acessar o sistema tem um menu horizontal com as opções: gêneros, autores e livros.
+É só fazer uso do sistema.
