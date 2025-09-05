@@ -1,0 +1,17 @@
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\security\service\UsuarioDetailsServiceImplTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\service\AutorServiceTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\config\OpenApiConfigTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\security\utils\JwtUtilTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\dto\AutenticacaoResponseTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\exception\GlobalExceptionHandlerTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\dto\AutenticacaoRequestTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\config\SecurityConfigTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\ContextLoadTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\service\LivroServiceTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\service\GenreServiceTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\config\DataInitTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\config\JacksonConfigTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\service\AutenticacaoServiceTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\config\JwtAuthFilterTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\service\GeneroServiceTest.java
+F:\biblioteca\springboot\src\test\java\br\com\biblioteca\controller\LivroControllerTest.java

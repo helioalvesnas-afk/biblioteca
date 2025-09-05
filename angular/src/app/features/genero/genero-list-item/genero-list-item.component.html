@@ -1,0 +1,12 @@
+<div [innerHTML]="genero.nome" class="genero-item-description">
+</div>
+<div>
+    <button type="button" [routerLink]="['/generos/edit', genero.id]" class="btn btn-primary mr-1">
+        Alterar
+    </button>
+</div>
+<div>
+    <button type="button" class="btn btn-danger" (click)="remove(genero)">
+        Excluir
+    </button>
+</div>

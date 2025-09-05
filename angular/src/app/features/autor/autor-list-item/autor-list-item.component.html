@@ -1,0 +1,12 @@
+<div [innerHTML]="autor.nome" class="autor-item-description">
+</div>
+<div>
+    <button type="button" [routerLink]="['/autores/edit', autor.id]" class="btn btn-primary mr-1">
+        Alterar
+    </button>
+</div>
+<div>
+    <button type="button" class="btn btn-danger" (click)="remove(autor)">
+        Excluir
+    </button>
+</div>

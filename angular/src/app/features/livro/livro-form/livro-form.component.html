@@ -1,0 +1,30 @@
+<h2>{{ title }}</h2>
+<hr />
+
+<section id="form">
+  <form (ngSubmit)="onSubmit()" #formTask="ngForm">
+    <div class="form-group">
+      <label>Livro</label>
+      <input [(ngModel)]="livro.titulo" type="text" name="titulo" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label>Gênero</label>
+      <select [(ngModel)]="livro.genero.id" name="generoId" class="form-control">
+        <option *ngFor="let genero of generos" [value]="genero.id">{{ genero.nome }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Autor</label>
+      <select [(ngModel)]="livro.autor.id" name="autorId" class="form-control">
+        <option *ngFor="let autor of autores" [value]="autor.id">{{ autor.nome }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Ano de Publicação</label>
+      <input [(ngModel)]="livro.anoPublicacao" type="number" min="1900" step="1" maxlength="4" name="anoPublicacao"
+        class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary mr-2">Salvar</button>
+    <button type="button" class="btn btn-secondary" [routerLink]="['/livros']">Cancelar</button>
+  </form>
+</section>

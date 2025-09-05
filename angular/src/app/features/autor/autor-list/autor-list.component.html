@@ -1,0 +1,18 @@
+<h2>Autor</h2>
+<hr />
+
+<button type="button" class="btn btn-primary mb-2" [routerLink]="['/autores/new']">
+    Novo
+</button>
+
+<section>
+    <div *ngIf="autores.length == 0" class="alert alert-warning" role="alert">
+        Nenhum autor foi cadastrado ainda.
+    </div>
+
+    <ul class="list-group" *ngIf="autores.length > 0" >
+        <li class="list-group-item" *ngFor="let autor of autores">
+            <app-autor-list-item [autor]="autor" class="autor-item" (onDelete)="onDeleted($event)"></app-autor-list-item>
+        </li>
+    </ul>
+</section>

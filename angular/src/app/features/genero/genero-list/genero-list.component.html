@@ -1,0 +1,18 @@
+<h2>Genero</h2>
+<hr />
+
+<button type="button" class="btn btn-primary mb-2" [routerLink]="['/generos/new']">
+    Novo
+</button>
+
+<section>
+    <div *ngIf="generos.length == 0" class="alert alert-warning" role="alert">
+        Nenhum genero foi cadastrado ainda.
+    </div>
+
+    <ul class="list-group" *ngIf="generos.length > 0" >
+        <li class="list-group-item" *ngFor="let genero of generos">
+            <app-genero-list-item [genero]="genero" class="genero-item" (onDelete)="onDeleted($event)"></app-genero-list-item>
+        </li>
+    </ul>
+</section>

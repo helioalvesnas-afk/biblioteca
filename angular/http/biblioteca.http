@@ -1,0 +1,63 @@
+###
+POST http://localhost:8086/api/v1/autenticacao/login
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": 123456
+}
+
+###
+POST http://localhost:8086/api/v1/livros
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzU3MDE2MzU1LCJleHAiOjE3NTcwMTk5NTV9.Vp7l2r0JBB_TQwXJIWCptnRyUpV9hC2I2wTWxSUExdI
+content-type: application/json
+
+{
+    "titulo": "Hulk",
+    "anoPublicacao": 2023,
+    "autorId": 1,
+    "generoId": 2
+}
+###
+GET http://localhost:8086/api/v1/generos/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzU3MDE4NDU2LCJleHAiOjE3NTcwMjIwNTZ9.Fyj4gbkdk7inEsW0OP2hNaZNKOFJdR4nyGCfp9Csd0w
+content-type: application/json
+###
+GET http://localhost:8086/api/v1/generos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzU2OTEzMzU5LCJleHAiOjE3NTY5MTY5NTl9.eSjQylJTmQQ3PyHT5ed1RlyM-hbvYj9ZwbN0oG17DZo
+content-type: application/json
+###
+
+PUT http://localhost:8086/api/v1/livros/1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzU3MDIxMDAwLCJleHAiOjE3NTcwMjQ2MDB9.IcRx-2Lka7XEOKtbo8JC42gTRSxKnyDCIHPp9QRB47c
+content-type: application/json
+
+{
+  "id": 1,
+  "titulo": "O homem aranha..",
+  "anoPublicacao": 2024,
+  "autor": {
+    "id": 2,
+    "nome": "Fernando"
+  },
+  "genero": {
+    "id": 10,
+    "nome": "Ação"
+  }
+}
+###
+
+DELETE http://localhost:8086/api/v1/livros/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzU2ODgyNTI4LCJleHAiOjE3NTY4ODYxMjh9.IGdw3S03C9CLerT-gkHIUj7fFBgFqTCMi6odgOh8slA
+content-type: application/json
+
+###
+GET http://localhost:8086/api/v1/livros/1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzU3MDI2ODA4LCJleHAiOjE3NTcwMzA0MDh9.D34bbP4s9RFvzwhfBVtim6UDTXBL1-Rn2WQyGrpgXzA
+
+###
+GET http://localhost:8086/api/v1/livros
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzU3MDI1NjA4LCJleHAiOjE3NTcwMjkyMDh9.CRti6ONdVL_g0zMwRUl2YYkSKTeQggMVJgoVWmbWw9k
