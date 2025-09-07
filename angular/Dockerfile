@@ -1,18 +1,28 @@
-# Etapa 1: Build do Angular
-FROM node:20 AS build
+# Etapa de build
+FROM node:20-alpine AS build
 WORKDIR /app
 
-# Copia configs e instala dependências
+# Instala dependências primeiro para aproveitar cache
 COPY package*.json ./
 RUN npm install
 
-# Copia código e builda
+# Copia código
 COPY . .
-RUN npm run build -- --configuration production
+# Build de produção
+RUN npm run build -- --configuration=production
 
-# Etapa 2: Servir com Nginx
+# Etapa de runtime com Nginx
 FROM nginx:alpine
-COPY --from=build /app/dist/* /usr/share/nginx/html
 
+# Copia build para Nginx
+COPY --from=build /app/dist/* /usr/share/nginx/html/
+
+# Copia config SPA + entrypoint
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
+# assets/env.js será gerado no entrypoint via variável de ambiente API_URL
+ENTRYPOINT ["/docker-entrypoint.sh"]
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

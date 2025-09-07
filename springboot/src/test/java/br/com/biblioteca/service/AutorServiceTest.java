@@ -4,9 +4,10 @@ import br.com.biblioteca.dto.AutorDTO;
 import br.com.biblioteca.entity.Autor;
 import br.com.biblioteca.repository.IAutorRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +19,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
 public class AutorServiceTest {
 
     @Mock
@@ -68,7 +69,7 @@ public class AutorServiceTest {
 
         assertThatThrownBy(() -> autorService.buscarPorId(99L))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessage("Genero nÃ£o encontrado");
+                .hasMessage("Genero não encontrado");  // Genero nÃ£o encontrado
     }
 
     @Test
@@ -78,13 +79,13 @@ public class AutorServiceTest {
         salvo.setId(1L);
         salvo.setNome("Jorge Amado");
 
-        when(autorRepository.save(any(Autor.class))).thenReturn(salvo);
+        when(autorRepository.save(any())).thenReturn(salvo);
 
         Autor result = autorService.inserir(dto);
 
         assertThat(result).isNotNull();
         assertThat(result.getNome()).isEqualTo("Jorge Amado");
-        verify(autorRepository).save(any(Autor.class));
+        verify(autorRepository).save(any());
     }
 
     @Test

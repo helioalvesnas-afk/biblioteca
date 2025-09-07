@@ -6,47 +6,86 @@ import br.com.biblioteca.security.repository.IRoleRepository;
 import br.com.biblioteca.security.repository.IUsuarioRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.ArgumentCaptor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public  class DataInitTest {
+public class DataInitTest {
 
-    @Mock
     private IRoleRepository roleRepository;
-
-    @Mock
     private IUsuarioRepository usuarioRepository;
-
-    @Mock
-    private PasswordEncoder passwordEncoder;
-
-    @InjectMocks
+    private PasswordEncoder encoder;
     private DataInit dataInit;
 
     @BeforeEach
-    void setup() {
-        MockitoAnnotations.openMocks(this);
+    void setUp() {
+        roleRepository = mock(IRoleRepository.class);
+        usuarioRepository = mock(IUsuarioRepository.class);
+        encoder = mock(PasswordEncoder.class);
+
+        dataInit = new DataInit(roleRepository, usuarioRepository, encoder);
     }
 
     @Test
-    void naoDeveCriarUsuariosOuRolesQuandoJaExistirem() throws Exception {
-        when(roleRepository.findByNome(anyString())).thenReturn(Optional.of(new Role()));
-        when(usuarioRepository.findByUsername(anyString())).thenReturn(Optional.of(new Usuario()));
+    void deveCriarUsuariosEPapeisQuandoNaoExistirem() {
+        // mocks para roles
+        when(roleRepository.findByNome("ROLE_READ")).thenReturn(Optional.empty());
+        when(roleRepository.findByNome("ROLE_WRITE")).thenReturn(Optional.empty());
+        when(roleRepository.save(any(Role.class))).thenAnswer(inv -> {
+            Role r = inv.getArgument(0);
+            r.setId(1L); // simula ID gerado
+            return r;
+        });
 
+        // mocks para usuários
+        when(usuarioRepository.findByUsername("user")).thenReturn(Optional.empty());
+        when(usuarioRepository.findByUsername("admin")).thenReturn(Optional.empty());
+
+        // mock password encoder
+        when(encoder.encode(anyString())).thenReturn("encodedPassword");
+
+        // executa o método
         dataInit.run();
 
-        // Verifica que não salvou nada
-        verify(roleRepository, never()).save(any(Role.class));
+        // captura os usuários salvos
+        ArgumentCaptor<Usuario> usuarioCaptor = ArgumentCaptor.forClass(Usuario.class);
+        verify(usuarioRepository, times(2)).save(usuarioCaptor.capture());
+
+        var usuariosSalvos = usuarioCaptor.getAllValues();
+
+        // verificações
+        assertEquals(2, usuariosSalvos.size());
+
+        Usuario user = usuariosSalvos.stream().filter(u -> u.getUsername().equals("user")).findFirst().orElseThrow();
+        Usuario admin = usuariosSalvos.stream().filter(u -> u.getUsername().equals("admin")).findFirst().orElseThrow();
+
+        assertEquals("encodedPassword", user.getPassword());
+        assertEquals(1, user.getRoles().size());
+
+        assertEquals("encodedPassword", admin.getPassword());
+        assertEquals(2, admin.getRoles().size());
+    }
+
+    @Test
+    void naoDeveCriarUsuariosQuandoJaExistirem() {
+        // já existem usuários
+        when(usuarioRepository.findByUsername("user")).thenReturn(Optional.of(new Usuario()));
+        when(usuarioRepository.findByUsername("admin")).thenReturn(Optional.of(new Usuario()));
+
+        // executa
+        dataInit.run();
+
+        // nunca deve salvar usuários novos
         verify(usuarioRepository, never()).save(any(Usuario.class));
     }
 }

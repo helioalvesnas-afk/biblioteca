@@ -4,12 +4,13 @@ import br.com.biblioteca.security.models.Role;
 import br.com.biblioteca.security.models.Usuario;
 import br.com.biblioteca.security.repository.IUsuarioRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 import java.util.Set;
@@ -18,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
 public class UsuarioDetailsServiceImplTest {
 
     @Mock
@@ -54,6 +55,6 @@ public class UsuarioDetailsServiceImplTest {
 
         assertThatThrownBy(() -> usuarioDetailsService.loadUserByUsername("inexistente"))
                 .isInstanceOf(UsernameNotFoundException.class)
-                .hasMessage("UsuÃ¡rio nÃ£o encontrado");
+                .hasMessage("Usuário não encontrado");
     }
 }

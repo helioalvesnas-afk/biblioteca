@@ -22,7 +22,7 @@ public class AutorService {
     }
 
     public Autor buscarPorId(Long id) {
-        return iAutorRepository.findById(id).orElseThrow(() -> new RuntimeException("Genero nÃ£o encontrado"));
+        return iAutorRepository.findById(id).orElseThrow(() -> new RuntimeException("Genero não encontrado"));
     }
 
     public Autor inserir(AutorDTO dto) {
