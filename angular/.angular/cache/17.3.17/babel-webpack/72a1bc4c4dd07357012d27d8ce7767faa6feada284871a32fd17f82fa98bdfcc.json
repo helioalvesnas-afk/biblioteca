@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { HTTP_INTERCEPTORS } from '@angular/common/http';\nimport { AutenticacaoInterceptor } from './autenticacao-interceptor';\nexport var httpInterceptorProviders = [{\n  provide: HTTP_INTERCEPTORS,\n  useClass: AutenticacaoInterceptor,\n  multi: true\n}];","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

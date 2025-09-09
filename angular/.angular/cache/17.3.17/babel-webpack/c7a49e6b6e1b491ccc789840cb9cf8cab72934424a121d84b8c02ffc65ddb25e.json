@@ -1,1 +1,0 @@
-{"ast":null,"code":"// Lê valor de window.__env injetado pelo Nginx\nexport var runtimeEnv = window.__env || {\n  API_URL: 'http://localhost:8080'\n};","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
