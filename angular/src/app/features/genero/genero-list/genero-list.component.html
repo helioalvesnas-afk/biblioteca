@@ -9,7 +9,7 @@
     <div *ngIf="generos.length == 0" class="alert alert-warning" role="alert">
         Nenhum genero foi cadastrado ainda.
     </div>
-
+    <p *ngIf="loading">Carregando...</p>
     <ul class="list-group" *ngIf="generos.length > 0" >
         <li class="list-group-item" *ngFor="let genero of generos">
             <app-genero-list-item [genero]="genero" class="genero-item" (onDelete)="onDeleted($event)"></app-genero-list-item>

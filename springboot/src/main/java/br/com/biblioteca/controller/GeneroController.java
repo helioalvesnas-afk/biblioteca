@@ -1,5 +1,6 @@
 package br.com.biblioteca.controller;
 
+import br.com.biblioteca.dto.ApiResponse;
 import br.com.biblioteca.entity.Genero;
 import br.com.biblioteca.repository.IGeneroRepository;
 import jakarta.validation.Valid;
@@ -37,9 +38,15 @@ public class GeneroController {
 
     @PreAuthorize("hasAnyRole('READ','WRITE')")
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscar(@PathVariable("id") Long id) {
-        var result = iGeneroRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());;
-        return new ResponseEntity<>(result, HttpStatus.OK );
+    public ResponseEntity<ApiResponse<Genero>> buscar(@PathVariable("id") Long id) {
+        var result = iGeneroRepository.findById(id)
+                .map(genero -> ResponseEntity.ok(
+                        new ApiResponse<>(true, "Gênero encontrado", genero)
+                ))
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                        new ApiResponse<>(false, "Gênero não encontrado", null)
+                ));
+        return result;
     }
 
     @PreAuthorize("hasRole('WRITE')")

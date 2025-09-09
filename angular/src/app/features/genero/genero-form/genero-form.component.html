@@ -2,12 +2,27 @@
 <hr />
 
 <section id="form">
-    <form (ngSubmit)="onSubmit()" #formTask="ngForm">
-        <div class="form-group">
-            <label>Gênero</label>
-            <input [(ngModel)]="genero.nome" type="text" name="nome" class="form-control"/>
-        </div>
-        <button type="submit" class="btn btn-primary mr-2">Salvar</button>
-        <button type="button" class="btn btn-secondary" [routerLink]="['/generos']">Cancelar</button>
-    </form>
+
+  <form [formGroup]="generoForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="id">Código</label>
+      <input id="id" type="text" formControlName="id" readonly class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input id="nome" type="text" formControlName="nome" class="form-control">
+      <div *ngIf="generoForm.get('nome')?.invalid && generoForm.get('nome')?.touched">
+        O nome é obrigatório
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="generoForm.invalid" class="btn btn-primary mr-2">Salvar</button>
+    <button type="button" class="btn btn-secondary" [routerLink]="['/generos']"
+      class="btn btn-secondary">Cancelar</button>
+  </form>
+
+
+
 </section>

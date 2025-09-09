@@ -2,36 +2,31 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Genero } from '../../shared/models/genero';
 import { environment } from '../../../environments/environment';
+import { Observable, of } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GeneroService {
 
   constructor(private http: HttpClient) { }
 
-  getAll() {
+  carregarGeneros(): Observable<any[]> {
     return this.http.get<any[]>(`${environment.api}/api/v1/generos`);
   }
 
-  getById(id: string) {
+  buscarGeneroPorId(id: string) {
     return this.http.get<any>(`${environment.api}/api/v1/generos/${id}`);
   }
 
-  save(genero: Genero) {
-    const generoBody = {
-      id: genero.id,
-      nome: genero.nome
-    };
-
-    if (genero.id) {
-      return this.http.put<any>(`${environment.api}/api/v1/generos/${genero.id}`, generoBody);
-    } else {
-      return this.http.post<any>(`${environment.api}/api/v1/generos`, generoBody);
-    }
+  adicionarGenero(genero: Genero) {
+    return this.http.post<any>(`${environment.api}/api/v1/generos`, genero);
   }
 
-  delete(id: string) {
+  atualizarGenero(genero: Genero) {
+    return this.http.put<any>(`${environment.api}/api/v1/generos/${genero.id}`, genero);
+  }
+
+  removerGenero(id: string) {
     return this.http.delete(`${environment.api}/api/v1/generos/${id}`);
   }
+
 }

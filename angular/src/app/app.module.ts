@@ -1,8 +1,11 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { httpInterceptorProviders } from './core/interceptors';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+//import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +23,10 @@ import { AutorFormComponent } from './features/autor/autor-form/autor-form.compo
 import { LivroListItemComponent } from './features/livro/livro-list-item/livro-list-item.component';
 import { LivroListComponent } from './features/livro/livro-list/livro-list.component';
 import { LivroFormComponent } from './features/livro/livro-form/livro-form.component';
+
+import { generoReducer } from './core/redux/reducer/genero/genero.reducer';
+import generoEffects from './core/redux/effects/genero/genero.effects';
+import { GeneroService } from './core/services/genero.service';
 
 @NgModule({
   declarations: [
@@ -43,13 +50,18 @@ import { LivroFormComponent } from './features/livro/livro-form/livro-form.compo
     InicioComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({ genero: generoReducer }),
+    EffectsModule.forRoot([generoEffects]),
+    //StoreDevtoolsModule.instrument({ maxAge: 25 }),
   ],
   providers: [
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    GeneroService
   ],
   bootstrap: [AppComponent],
   schemas: []

@@ -23,7 +23,7 @@ export class LivroFormComponent implements OnInit {
     private router: Router,
     private livroService: LivroService,
     private generoService: GeneroService,
-    private autorService: AutorService
+    private autorService: AutorService,
   ) {
     this.livro.genero = new Genero();
     this.livro.autor = new Autor();
@@ -43,7 +43,7 @@ export class LivroFormComponent implements OnInit {
         .catch(err => console.error('Erro ao buscar livro', err));
     }
 
-    this.generoService.getAll().subscribe(genero => {
+    this.generoService.carregarGeneros().subscribe(genero => {
       this.generos = genero;
     });
 

@@ -43,7 +43,7 @@ public class SecurityConfig {
         response.setStatus(status);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        var resp = new ApiResponse<>(message, "Atenção", status);
+        var resp = new ApiResponse<>(false, "Atenção", response);
         objectMapper.writeValue(response.getWriter(), resp);
     }
 

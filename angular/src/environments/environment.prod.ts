@@ -1,6 +1,6 @@
 import { runtimeEnv } from '../app/core/env';
 
 export const environment = {
-  production: true,
+  production: false,
   api: runtimeEnv.API_URL
 };

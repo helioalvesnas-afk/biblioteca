@@ -9,11 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -28,54 +33,82 @@ public class GlobalExceptionHandlerTest {
     }
 
     @Test
-    void deveTratarResourceNotFoundException() {
+    void testHandleNotFound() {
         ResourceNotFoundException ex = new ResourceNotFoundException("Recurso não encontrado");
 
-        ResponseEntity<ApiResponse<Void>> response = handler.handleNotFound(ex);
+        ResponseEntity<?> response = handler.handleNotFound(ex);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-        assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().message()).isEqualTo("Recurso não encontrado");
-        assertThat(response.getBody().data()).isNull();
-        assertThat(response.getBody().status()).isEqualTo(HttpStatus.NOT_FOUND.value());
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        ApiResponse<?> body = (ApiResponse<?>) response.getBody();
+        assertNotNull(body);
+        assertFalse(body.isSucesso());
+        assertEquals("Recurso não encontrado", body.getMensagem());
+        assertNull(body.getDado());
     }
 
     @Test
-    void deveTratarMethodArgumentNotValidException() {
-        FieldError fieldError = new FieldError("obj", "nome", "Nome obrigatório");
+    void testHandleValidation() {
         MethodArgumentNotValidException ex = mock(MethodArgumentNotValidException.class);
-        when(ex.getBindingResult()).thenReturn(mock(org.springframework.validation.BindingResult.class));
-        when(ex.getBindingResult().getFieldErrors()).thenReturn(List.of(fieldError));
+        var bindingResult = mock(org.springframework.validation.BindingResult.class);
 
-        ResponseEntity<ApiResponse<Map<String, String>>> response = handler.handleValidation(ex);
+        FieldError fieldError = new FieldError("object", "campo", "Obrigatório");
+        when(ex.getBindingResult()).thenReturn(bindingResult);
+        when(bindingResult.getFieldErrors()).thenReturn(List.of(fieldError));
+        when(ex.getMessage()).thenReturn("Erro de validação");
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
-        assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().message()).isEqualTo("Falha na validação");
-        assertThat(response.getBody().data()).containsEntry("nome", "Nome obrigatório");
+        ResponseEntity<?> response = handler.handleValidation(ex);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        ApiResponse<?> body = (ApiResponse<?>) response.getBody();
+        assertNotNull(body);
+        assertFalse(body.isSucesso());
+        assertEquals("Erro de validação", body.getMensagem());
+
+        Map<?, ?> errors = (Map<?, ?>) body.getDado();
+        assertNotNull(errors);
+        assertEquals("Obrigatório", errors.get("campo"));
     }
 
     @Test
-    void deveTratarRuntimeException() {
-        RuntimeException ex = new RuntimeException("Erro de negócio");
+    void testHandleAny() {
+        Exception ex = new Exception("Erro qualquer");
+
+        ResponseEntity<?> response = handler.handleAny(ex);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        ApiResponse<?> body = (ApiResponse<?>) response.getBody();
+        assertNotNull(body);
+        assertFalse(body.isSucesso());
+        assertEquals("Erro interno", body.getMensagem());
+        assertNull(body.getDado());
+    }
+
+    @Test
+    void testHandleRuntime() {
+        RuntimeException ex = new RuntimeException("Erro runtime");
 
         ResponseEntity<?> response = handler.handleRuntime(ex);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
-        Map<?, ?> body = (Map<?, ?>) response.getBody();
-        //assertThat(body).containsEntry("error", "Erro de negócio");
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        ApiResponse<?> body = (ApiResponse<?>) response.getBody();
+        assertNotNull(body);
+        assertFalse(body.isSucesso());
+        assertEquals("Erro runtime", body.getMensagem());
+        assertNull(body.getDado());
     }
 
     @Test
-    void deveTratarExceptionGenerica() {
-        Exception ex = new Exception("Erro inesperado");
+    void testHandleNoHandlerFound() {
+        NoHandlerFoundException ex = mock(NoHandlerFoundException.class);
 
-        ResponseEntity<ApiResponse<Void>> response = handler.handleAny(ex);
+        ResponseEntity<?> response = handler.handleNoSuchElement(ex);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
-        assertThat(response.getBody().message()).isEqualTo("Erro interno");
-        assertThat(response.getBody().data()).isNull();
-        assertThat(response.getBody().status()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        ApiResponse<?> body = (ApiResponse<?>) response.getBody();
+        assertNotNull(body);
+        assertFalse(body.isSucesso());
+        assertEquals("Recurso não encontrado", body.getMensagem());
+        assertNull(body.getDado());
     }
 
 }

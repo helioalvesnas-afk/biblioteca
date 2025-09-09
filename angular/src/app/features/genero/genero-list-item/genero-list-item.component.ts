@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Genero } from '../../../shared/models/genero';
-import { GeneroService } from '../../../core/services/genero.service';
+import * as GeneroActions from '../../../core/redux/actions/genero/genero.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-genero-list-item',
@@ -15,16 +16,15 @@ export class GeneroListItemComponent implements OnInit {
   @Output()
   onDelete = new EventEmitter()
 
-  constructor(private generoService: GeneroService) { }
+  constructor(private store: Store) { }
 
   ngOnInit() {
   }
 
   remove(genero: Genero) {
     if (genero !== undefined) {
-      this.generoService.delete(genero.id).subscribe(() => {
-        this.onDelete.emit(genero);
-      });
+      this.onDelete.emit(genero);
+      this.store.dispatch(GeneroActions.removerGenero({ id: genero.id }) );
     }
   }
 
