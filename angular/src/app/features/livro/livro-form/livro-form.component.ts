@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AutorService } from 'src/app/core/services/autor.service';
-import { GeneroService } from 'src/app/core/services/genero.service';
-import { LivroService } from 'src/app/core/services/livro.service';
-import { Autor } from 'src/app/shared/models/autor';
-import { Genero } from 'src/app/shared/models/genero';
-import { Livro } from 'src/app/shared/models/livro';
+import { AutorService } from '../../../core/services/autor.service';
+import { GeneroService } from '../../../core/services/genero.service';
+import { LivroService } from '../../../core/services/livro.service';
+import { Autor } from '../../../shared/models/autor';
+import { Genero } from '../../../shared/models/genero';
+import { Livro } from '../../../shared/models/livro';
 
 @Component({
   selector: 'app-livro-form',

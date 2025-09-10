@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { Livro } from '../../shared/models/livro';
 import { environment } from '../../../environments/environment';
-import { LivroMapper } from 'src/app/shared/Mapper/livro-mapper';
+import { LivroMapper } from './../../shared/Mapper/livro-mapper';
 
 @Injectable({
   providedIn: 'root'

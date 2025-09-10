@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs';
-import * as generoActions from '../../../core/redux/actions/genero/genero.actions';
+import * as generoActions from '../../../core/state/actions/genero.actions';
 import { Genero } from '../../../shared/models/genero';
 import {
   selectGeneroSelecionado,
   selectLoading,
   selectError
-} from '../../../core/redux/selectors/genero/genero.selectors';
+} from '../../../core/state/selectors/genero.selectors';
 import { ApiResponse } from '../../../shared/dto/api-response';
 import { GenericMapper } from '../../../shared/Mapper/generic-mapper';
 

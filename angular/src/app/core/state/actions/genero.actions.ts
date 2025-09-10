@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Genero } from '../../../../shared/models/genero';
-import { ApiResponse } from '../../../../shared/dto/api-response';
+import { Genero } from '../../../shared/models/genero';
+import { ApiResponse } from '../../../shared/dto/api-response';
 
 // carregar
 export const carregarGeneros = createAction('[Genero] Carregar');

@@ -1,10 +1,8 @@
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
-import { carregarGenerosSucesso, carregarGenerosFalha, buscarGeneroPorIdSucesso, buscarGeneroPorIdFalha, carregarGeneros, buscarGeneroPorId, adicionarGenero, adicionarGeneroSucesso, adicionarGeneroFalha, atualizarGenero, atualizarGeneroSucesso, atualizarGeneroFalha, removerGenero, removerGeneroSucesso, removerGeneroFalha } from '../../actions/genero/genero.actions';
-import { GeneroService } from '../../../../core/services/genero.service';
-import { ApiResponse } from 'src/app/shared/dto/api-response';
-
+import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { carregarGenerosSucesso, carregarGenerosFalha, buscarGeneroPorIdSucesso, buscarGeneroPorIdFalha, carregarGeneros, buscarGeneroPorId, adicionarGenero, adicionarGeneroSucesso, adicionarGeneroFalha, atualizarGenero, atualizarGeneroSucesso, atualizarGeneroFalha, removerGenero, removerGeneroSucesso, removerGeneroFalha } from './../actions/genero.actions';
+import { GeneroService } from '../../../core/services/genero.service';
 
 export const carregarGeneroEffect = createEffect((
   actions$ = inject(Actions),
@@ -24,6 +22,7 @@ export const buscarGeneroPorIdEffect = createEffect((
   service = inject(GeneroService)
 ) => actions$.pipe(
   ofType(buscarGeneroPorId),
+  tap(() => console.log('Passou pelo Effect')),
   switchMap(action =>
     service.buscarGeneroPorId(action.id).pipe(
       map(apiResponse => buscarGeneroPorIdSucesso({ apiResponse })),

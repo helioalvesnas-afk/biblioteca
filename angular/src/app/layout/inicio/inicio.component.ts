@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ContaService } from 'src/app/core/services/conta.service';
+import { ContaService } from '../../core/services/conta.service';
 
 @Component({
   selector: 'app-inicio',

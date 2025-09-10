@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
-import { httpInterceptorProviders } from './core/interceptors';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-//import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { httpInterceptorProviders } from './core/interceptors';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { LoginComponent } from './features/login/login.component';
 import { AutenticacaoComponent } from './layout/autenticacao/autenticacao.component';
 import { InicioComponent } from './layout/inicio/inicio.component';
@@ -23,10 +22,10 @@ import { AutorFormComponent } from './features/autor/autor-form/autor-form.compo
 import { LivroListItemComponent } from './features/livro/livro-list-item/livro-list-item.component';
 import { LivroListComponent } from './features/livro/livro-list/livro-list.component';
 import { LivroFormComponent } from './features/livro/livro-form/livro-form.component';
-
-import { generoReducer } from './core/redux/reducer/genero/genero.reducer';
-import generoEffects from './core/redux/effects/genero/genero.effects';
 import { GeneroService } from './core/services/genero.service';
+import { reducerGenero } from './core/state/state/app.reducers';
+
+import generoEffects from './core/state/effects/genero.effects';
 
 @NgModule({
   declarations: [
@@ -55,13 +54,13 @@ import { GeneroService } from './core/services/genero.service';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({ genero: generoReducer }),
+    StoreModule.forRoot(reducerGenero),
     EffectsModule.forRoot([generoEffects]),
-    //StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
   ],
   providers: [
     httpInterceptorProviders,
-    GeneroService
+    GeneroService,
   ],
   bootstrap: [AppComponent],
   schemas: []

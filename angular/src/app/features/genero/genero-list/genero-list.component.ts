@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import * as generoActions from '../../../core/redux/actions/genero/genero.actions';
-import { selectGeneros, selectLoading } from '../../../core/redux/selectors/genero/genero.selectors';
+import * as generoActions from '../../../core/state/actions/genero.actions';
+import { selectGeneros, selectLoading } from '../../../core/state/selectors/genero.selectors';
 import { Genero } from '../../../shared/models/genero';
 
 @Component({
@@ -19,8 +19,11 @@ export class GeneroListComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(generoActions.carregarGeneros());
-    this.store.pipe(select(selectGeneros)).subscribe(data => this.generos = data);
-    this.store.pipe(select(selectLoading)).subscribe(data => this.loading = data);
+    setTimeout(() => {
+      this.store.pipe(select(selectGeneros)).subscribe(generos => this.generos = generos).unsubscribe();
+      this.store.pipe(select(selectLoading)).subscribe(loading => this.loading = loading).unsubscribe();
+    }, 500);
+
   }
 
   onDeleted(genero: Genero) {

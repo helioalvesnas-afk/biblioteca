@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Livro } from '../../../shared/models/livro';
-import { LivroService } from 'src/app/core/services/livro.service';
+import { LivroService } from '../../../core/services/livro.service';
 
 @Component({
   selector: 'app-livro-list-item',

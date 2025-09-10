@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Genero } from '../../../shared/models/genero';
-import * as GeneroActions from '../../../core/redux/actions/genero/genero.actions';
 import { Store } from '@ngrx/store';
+import { Genero } from '../../../shared/models/genero';
+import * as GeneroActions from '../../../core/state/actions/genero.actions';
 
 @Component({
   selector: 'app-genero-list-item',
