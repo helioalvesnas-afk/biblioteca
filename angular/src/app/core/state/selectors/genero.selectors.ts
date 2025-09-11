@@ -1,14 +1,14 @@
-import { IAppStateGenero } from '../state/app-sate';
+import { IAppState } from '../state/app-sate';
 
 const selectorGenero = () => {
 
-  const selectGeneros = (app: IAppStateGenero) => app.genero.lista;
+  const selectGeneros = (app: IAppState) => app.genero.lista;
 
-  const selectGeneroSelecionado = (app: IAppStateGenero) => app.genero.selecionado;
+  const selectGeneroSelecionado = (app: IAppState) => app.genero.selecionado;
 
-  const selectLoading = (app: IAppStateGenero) => app.genero.loading;
+  const selectLoading = (app: IAppState) => app.genero.loading;
 
-  const selectError = (app: IAppStateGenero) => app.genero.erro;
+  const selectError = (app: IAppState) => app.genero.erro;
 
   return {
     selectGeneros,

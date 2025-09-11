@@ -23,9 +23,9 @@ import { LivroListItemComponent } from './features/livro/livro-list-item/livro-l
 import { LivroListComponent } from './features/livro/livro-list/livro-list.component';
 import { LivroFormComponent } from './features/livro/livro-form/livro-form.component';
 import { GeneroService } from './core/services/genero.service';
-import { reducerGenero } from './core/state/state/app.reducers';
 
 import generoEffects from './core/state/effects/genero.effects';
+import { reducers } from './core/state/state/reducers';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,7 @@ import generoEffects from './core/state/effects/genero.effects';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducerGenero),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([generoEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
   ],

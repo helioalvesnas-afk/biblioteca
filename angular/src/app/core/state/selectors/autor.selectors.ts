@@ -1,18 +1,22 @@
-import { IAppStateAutor } from '../state/app-sate';
+import { IAppState } from '../state/app-sate';
 
-export const selectAutors = (app: IAppStateAutor) => app.autor.lista;
+const selectorAutor = () => {
 
-export const selectAutorSelecionado = (app: IAppStateAutor) => app.autor.selecionado;
+  const selectAutors = (app: IAppState) => app.autor.lista;
 
-export const selectLoading = (app: IAppStateAutor) => app.autor.loading;
+  const selectAutorSelecionado = (app: IAppState) => app.autor.selecionado;
 
-export const selectError = (app: IAppStateAutor) => app.autor.erro;
+  const selectLoading = (app: IAppState) => app.autor.loading;
 
-export const autorSelectors = {
-  selectAutors,
-  selectAutorSelecionado,
-  selectLoading,
-  selectError
-};
+  const selectError = (app: IAppState) => app.autor.erro;
 
-export default autorSelectors;
+  return {
+    selectAutors,
+    selectAutorSelecionado,
+    selectLoading,
+    selectError
+  };
+}
+
+
+export default selectorAutor;
