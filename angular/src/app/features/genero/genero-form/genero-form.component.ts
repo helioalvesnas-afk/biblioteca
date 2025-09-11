@@ -5,11 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import * as generoActions from '../../../core/state/actions/genero.actions';
 import { Genero } from '../../../shared/models/genero';
-import {
-  selectGeneroSelecionado,
-  selectLoading,
-  selectError
-} from '../../../core/state/selectors/genero.selectors';
+import selectorGenero from '../../../core/state/selectors/genero.selectors';
 import { ApiResponse } from '../../../shared/dto/api-response';
 import { GenericMapper } from '../../../shared/Mapper/generic-mapper';
 
@@ -25,6 +21,7 @@ export class GeneroFormComponent implements OnInit {
   error: any
   title: string = 'Novo';
 
+
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -38,6 +35,8 @@ export class GeneroFormComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    const { selectGeneroSelecionado, selectLoading, selectError } = selectorGenero();
 
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id) {

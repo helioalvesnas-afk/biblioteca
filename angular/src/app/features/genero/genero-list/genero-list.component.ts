@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as generoActions from '../../../core/state/actions/genero.actions';
-import { selectGeneros, selectLoading } from '../../../core/state/selectors/genero.selectors';
+import selectorGenero from '../../../core/state/selectors/genero.selectors';
 import { Genero } from '../../../shared/models/genero';
 
 @Component({
@@ -18,6 +18,9 @@ export class GeneroListComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit() {
+
+    const { selectGeneros, selectLoading } = selectorGenero();
+
     this.store.dispatch(generoActions.carregarGeneros());
     setTimeout(() => {
       this.store.pipe(select(selectGeneros)).subscribe(generos => this.generos = generos).unsubscribe();

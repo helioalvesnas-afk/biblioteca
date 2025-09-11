@@ -1,18 +1,22 @@
 import { IAppStateGenero } from '../state/app-sate';
 
-export const selectGeneros = (app: IAppStateGenero) => app.genero.lista;
+const selectorGenero = () => {
 
-export const selectGeneroSelecionado = (app: IAppStateGenero) => app.genero.selecionado;
+  const selectGeneros = (app: IAppStateGenero) => app.genero.lista;
 
-export const selectLoading = (app: IAppStateGenero) => app.genero.loading;
+  const selectGeneroSelecionado = (app: IAppStateGenero) => app.genero.selecionado;
 
-export const selectError = (app: IAppStateGenero) => app.genero.erro;
+  const selectLoading = (app: IAppStateGenero) => app.genero.loading;
 
-export const generoSelectors = {
-  selectGeneros,
-  selectGeneroSelecionado,
-  selectLoading,
-  selectError
-};
+  const selectError = (app: IAppStateGenero) => app.genero.erro;
 
-export default generoSelectors;
+  return {
+    selectGeneros,
+    selectGeneroSelecionado,
+    selectLoading,
+    selectError
+  };
+}
+
+
+export default selectorGenero;
