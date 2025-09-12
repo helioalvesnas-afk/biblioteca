@@ -22,7 +22,6 @@ export const buscarGeneroPorIdEffect = createEffect((
   service = inject(GeneroService)
 ) => actions$.pipe(
   ofType(buscarGeneroPorId),
-  tap(() => console.log('Passou pelo Effect')),
   switchMap(action =>
     service.buscarGeneroPorId(action.id).pipe(
       map(apiResponse => buscarGeneroPorIdSucesso({ apiResponse })),

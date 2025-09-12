@@ -57,7 +57,7 @@ export const generoReducer = createReducer(
   on(GeneroActions.atualizarGeneroSucesso, (state, { genero }) => ({
     ...state,
     lista: state.lista.map(g => g.id === genero.id ? genero : g),
-    loading: false
+    loading: true
   })),
   on(GeneroActions.atualizarGeneroFalha, (state, { erro }) => ({
     ...state,

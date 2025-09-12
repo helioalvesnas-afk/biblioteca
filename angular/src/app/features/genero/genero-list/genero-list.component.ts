@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import * as generoActions from '../../../core/state/actions/genero.actions';
 import selectorGenero from '../../../core/state/selectors/genero.selectors';
 import { Genero } from '../../../shared/models/genero';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-genero-list',
@@ -12,27 +13,23 @@ import { Genero } from '../../../shared/models/genero';
 
 export class GeneroListComponent implements OnInit {
 
-  generos: Genero[] = [];
-  loading: boolean = false;
+  generos$: Observable<Genero[]>;
+  loading$: Observable<boolean>;
 
   constructor(private store: Store) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.store.dispatch(generoActions.carregarGeneros());
 
     const { selectGeneros, selectLoading } = selectorGenero();
 
-    this.store.dispatch(generoActions.carregarGeneros());
-    setTimeout(() => {
-      this.store.pipe(select(selectGeneros)).subscribe(generos => this.generos = generos).unsubscribe();
-      this.store.pipe(select(selectLoading)).subscribe(loading => this.loading = loading).unsubscribe();
-    }, 500);
-
+    this.generos$ = this.store.pipe(select(selectGeneros));
+    this.loading$ = this.store.pipe(select(selectLoading));
   }
 
   onDeleted(genero: Genero) {
-    if (genero !== undefined) {
-      const index = this.generos.findIndex((generoItem) => generoItem.id == genero.id);
-      this.generos.splice(index, 1);
+    if (genero) {
+      this.store.dispatch(generoActions.removerGenero({ id: genero.id }));
     }
   }
 }
