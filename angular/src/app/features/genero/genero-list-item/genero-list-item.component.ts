@@ -2,11 +2,14 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Genero } from '../../../shared/models/genero';
 import * as GeneroActions from '../../../core/state/actions/genero.actions';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-genero-list-item',
-  templateUrl: './genero-list-item.component.html',
-  styleUrls: ['./genero-list-item.component.css'],
+    selector: 'app-genero-list-item',
+    templateUrl: './genero-list-item.component.html',
+    styleUrls: ['./genero-list-item.component.css'],
+    standalone: true,
+    imports: [RouterLink],
 })
 export class GeneroListItemComponent implements OnInit {
 

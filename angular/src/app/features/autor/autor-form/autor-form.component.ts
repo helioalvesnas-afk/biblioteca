@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AutorService } from 'src/app/core/services/autor.service';
 import { Autor } from 'src/app/shared/models/autor';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-autor-form',
-  templateUrl: './autor-form.component.html',
-  styleUrls: ['./autor-form.component.css']
+    selector: 'app-autor-form',
+    templateUrl: './autor-form.component.html',
+    styleUrls: ['./autor-form.component.css'],
+    standalone: true,
+    imports: [FormsModule, RouterLink]
 })
 export class AutorFormComponent implements OnInit {
   autor: Autor = new Autor();

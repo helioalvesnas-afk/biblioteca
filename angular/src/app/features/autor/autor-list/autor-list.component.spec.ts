@@ -8,8 +8,8 @@ describe('AutorListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AutorListComponent ]
-    })
+    imports: [AutorListComponent]
+})
     .compileComponents();
   }));
 

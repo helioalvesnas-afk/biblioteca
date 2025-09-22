@@ -8,8 +8,8 @@ describe('LivroFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LivroFormComponent ]
-    })
+    imports: [LivroFormComponent]
+})
     .compileComponents();
   }));
 

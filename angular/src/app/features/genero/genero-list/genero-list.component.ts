@@ -4,11 +4,16 @@ import * as generoActions from '../../../core/state/actions/genero.actions';
 import selectorGenero from '../../../core/state/selectors/genero.selectors';
 import { Genero } from '../../../shared/models/genero';
 import { Observable } from 'rxjs';
+import { RouterLink } from '@angular/router';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { GeneroListItemComponent } from '../genero-list-item/genero-list-item.component';
 
 @Component({
-  selector: 'app-genero-list',
-  templateUrl: './genero-list.component.html',
-  styleUrls: ['./genero-list.component.css']
+    selector: 'app-genero-list',
+    templateUrl: './genero-list.component.html',
+    styleUrls: ['./genero-list.component.css'],
+    standalone: true,
+    imports: [RouterLink, NgIf, NgFor, GeneroListItemComponent, AsyncPipe]
 })
 
 export class GeneroListComponent implements OnInit {

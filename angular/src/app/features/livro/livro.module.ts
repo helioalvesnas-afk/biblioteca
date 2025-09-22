@@ -7,12 +7,12 @@ import { LivroListItemComponent } from './livro-list-item/livro-list-item.compon
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    LivroRoutingModule
-  ],
-  exports: [LivroFormComponent, LivroListComponent, LivroListItemComponent],
-  declarations: [LivroFormComponent, LivroListComponent, LivroListItemComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        LivroRoutingModule,
+        LivroFormComponent, LivroListComponent, LivroListItemComponent
+    ],
+    exports: [LivroFormComponent, LivroListComponent, LivroListItemComponent],
 })
 export class LivroModule {}

@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AutorService } from '../../../core/services/autor.service';
 import { GeneroService } from '../../../core/services/genero.service';
 import { LivroService } from '../../../core/services/livro.service';
 import { Autor } from '../../../shared/models/autor';
 import { Genero } from '../../../shared/models/genero';
 import { Livro } from '../../../shared/models/livro';
+import { FormsModule } from '@angular/forms';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-livro-form',
-  templateUrl: './livro-form.component.html',
-  styleUrls: ['./livro-form.component.css']
+    selector: 'app-livro-form',
+    templateUrl: './livro-form.component.html',
+    styleUrls: ['./livro-form.component.css'],
+    standalone: true,
+    imports: [FormsModule, NgFor, RouterLink]
 })
 export class LivroFormComponent implements OnInit {
   livro: Livro = new Livro();

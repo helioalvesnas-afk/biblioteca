@@ -7,13 +7,12 @@ import { AutorListItemComponent } from './autor-list-item/autor-list-item.compon
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    AutorRoutingModule
-  ],
-  exports: [AutorFormComponent, AutorListComponent, AutorListItemComponent],
-  declarations: [AutorFormComponent, AutorListComponent, AutorListItemComponent],
-
+    imports: [
+        CommonModule,
+        FormsModule,
+        AutorRoutingModule,
+        AutorFormComponent, AutorListComponent, AutorListItemComponent
+    ],
+    exports: [AutorFormComponent, AutorListComponent, AutorListItemComponent],
 })
 export class AutorModule {}

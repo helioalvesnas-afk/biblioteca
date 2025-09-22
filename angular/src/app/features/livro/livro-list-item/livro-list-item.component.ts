@@ -1,11 +1,14 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Livro } from '../../../shared/models/livro';
 import { LivroService } from '../../../core/services/livro.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-livro-list-item',
-  templateUrl: './livro-list-item.component.html',
-  styleUrls: ['./livro-list-item.component.css'],
+    selector: 'app-livro-list-item',
+    templateUrl: './livro-list-item.component.html',
+    styleUrls: ['./livro-list-item.component.css'],
+    standalone: true,
+    imports: [RouterLink],
 })
 export class LivroListItemComponent implements OnInit {
 

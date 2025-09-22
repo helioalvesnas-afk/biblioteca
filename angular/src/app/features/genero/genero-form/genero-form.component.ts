@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import * as generoActions from '../../../core/state/actions/genero.actions';
@@ -8,11 +8,14 @@ import { Genero } from '../../../shared/models/genero';
 import selectorGenero from '../../../core/state/selectors/genero.selectors';
 import { ApiResponse } from '../../../shared/dto/api-response';
 import { GenericMapper } from '../../../shared/Mapper/generic-mapper';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-genero-form',
-  templateUrl: './genero-form.component.html',
-  styleUrls: ['./genero-form.component.css']
+    selector: 'app-genero-form',
+    templateUrl: './genero-form.component.html',
+    styleUrls: ['./genero-form.component.css'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, NgIf, RouterLink]
 })
 export class GeneroFormComponent implements OnInit {
   generoForm!: FormGroup;

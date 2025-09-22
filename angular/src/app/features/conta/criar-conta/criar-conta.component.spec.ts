@@ -8,8 +8,8 @@ describe('CriarContaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CriarContaComponent ]
-    })
+    imports: [CriarContaComponent]
+})
     .compileComponents();
   }));
 

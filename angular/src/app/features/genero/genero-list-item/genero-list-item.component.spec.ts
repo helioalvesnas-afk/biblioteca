@@ -8,8 +8,8 @@ describe('GeneroListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeneroListItemComponent ]
-    })
+    imports: [GeneroListItemComponent]
+})
     .compileComponents();
   }));
 

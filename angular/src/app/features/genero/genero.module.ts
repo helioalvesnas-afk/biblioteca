@@ -7,13 +7,13 @@ import { GeneroFormComponent } from './genero-form/genero-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    GeneroRoutingModule
-  ],
-  exports: [GeneroFormComponent, GeneroListComponent, GeneroListItemComponent],
-  declarations: [GeneroFormComponent, GeneroListComponent, GeneroListItemComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        GeneroRoutingModule,
+        GeneroFormComponent, GeneroListComponent, GeneroListItemComponent
+    ],
+    exports: [GeneroFormComponent, GeneroListComponent, GeneroListItemComponent],
 })
 export class GeneroModule {}

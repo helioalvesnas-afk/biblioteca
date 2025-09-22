@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AutorService } from 'src/app/core/services/autor.service';
 import { Autor } from 'src/app/shared/models/autor';
+import { RouterLink } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
+import { AutorListItemComponent } from '../autor-list-item/autor-list-item.component';
 
 @Component({
-  selector: 'app-autor-list',
-  templateUrl: './autor-list.component.html',
-  styleUrls: ['./autor-list.component.css']
+    selector: 'app-autor-list',
+    templateUrl: './autor-list.component.html',
+    styleUrls: ['./autor-list.component.css'],
+    standalone: true,
+    imports: [RouterLink, NgIf, NgFor, AutorListItemComponent]
 })
 export class AutorListComponent implements OnInit {
   autores: Autor[] = [];

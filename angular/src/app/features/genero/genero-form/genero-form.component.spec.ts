@@ -8,8 +8,8 @@ describe('GeneroFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeneroFormComponent ]
-    })
+    imports: [GeneroFormComponent]
+})
     .compileComponents();
   }));
 

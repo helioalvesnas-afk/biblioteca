@@ -8,8 +8,8 @@ describe('InicioComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InicioComponent ]
-    })
+    imports: [InicioComponent]
+})
     .compileComponents();
   }));
 

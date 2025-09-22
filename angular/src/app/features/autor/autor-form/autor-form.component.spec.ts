@@ -8,8 +8,8 @@ describe('AutorFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AutorFormComponent ]
-    })
+    imports: [AutorFormComponent]
+})
     .compileComponents();
   }));
 
