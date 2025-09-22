@@ -1,8 +1,22 @@
-import { isDevMode } from '@angular/core';
+import { isDevMode, importProvidersFrom } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import 'zone.js';
 
-import { AppModule } from './app/app.module';
+
+import { httpInterceptorProviders } from './app/core/interceptors';
+import { GeneroService } from './app/core/services/genero.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AppRoutingModule } from './app/app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './app/core/state/state/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AppComponent } from './app/app.component';
+import generoEffects from './app/core/state/effects/genero.effects';
 
 function safeAngularDevToolsInit() {
   try {
@@ -23,7 +37,22 @@ function safeAngularDevToolsInit() {
 }
 
 // Bootstrap principal
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
+bootstrapApplication(AppComponent, {
+    providers: [
+        importProvidersFrom(
+          ReactiveFormsModule,
+          BrowserModule,
+          RouterModule,
+          CommonModule,
+          FormsModule,
+          AppRoutingModule,
+          StoreModule.forRoot(reducers),
+          EffectsModule.forRoot([generoEffects]),
+          StoreDevtoolsModule.instrument({ maxAge: 25 })),
+        httpInterceptorProviders,
+        GeneroService,
+        provideHttpClient(withInterceptorsFromDi())
+    ]
+})
   .then(() => safeAngularDevToolsInit())
   .catch(err => console.error(err));
