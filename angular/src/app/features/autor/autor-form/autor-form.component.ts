@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
     selector: 'app-autor-form',
     templateUrl: './autor-form.component.html',
     styleUrls: ['./autor-form.component.css'],
-    standalone: true,
     imports: [FormsModule, RouterLink]
 })
 export class AutorFormComponent implements OnInit {

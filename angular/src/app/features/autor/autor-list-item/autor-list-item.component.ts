@@ -7,8 +7,7 @@ import { RouterLink } from '@angular/router';
     selector: 'app-autor-list-item',
     templateUrl: './autor-list-item.component.html',
     styleUrls: ['./autor-list-item.component.css'],
-    standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink]
 })
 export class AutorListItemComponent implements OnInit {
 

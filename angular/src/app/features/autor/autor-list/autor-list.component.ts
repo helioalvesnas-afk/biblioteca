@@ -9,7 +9,6 @@ import { AutorListItemComponent } from '../autor-list-item/autor-list-item.compo
     selector: 'app-autor-list',
     templateUrl: './autor-list.component.html',
     styleUrls: ['./autor-list.component.css'],
-    standalone: true,
     imports: [RouterLink, NgIf, NgFor, AutorListItemComponent]
 })
 export class AutorListComponent implements OnInit {

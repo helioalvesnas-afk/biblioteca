@@ -5,7 +5,6 @@ import { RouterOutlet } from '@angular/router';
     selector: 'app-autenticacao',
     templateUrl: './autenticacao.component.html',
     styleUrls: ['./autenticacao.component.css'],
-    standalone: true,
     imports: [RouterOutlet]
 })
 export class AutenticacaoComponent implements OnInit {

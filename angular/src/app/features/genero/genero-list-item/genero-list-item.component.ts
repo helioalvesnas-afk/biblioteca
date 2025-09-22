@@ -8,8 +8,7 @@ import { RouterLink } from '@angular/router';
     selector: 'app-genero-list-item',
     templateUrl: './genero-list-item.component.html',
     styleUrls: ['./genero-list-item.component.css'],
-    standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink]
 })
 export class GeneroListItemComponent implements OnInit {
 

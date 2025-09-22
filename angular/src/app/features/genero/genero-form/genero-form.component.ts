@@ -14,7 +14,6 @@ import { NgIf } from '@angular/common';
     selector: 'app-genero-form',
     templateUrl: './genero-form.component.html',
     styleUrls: ['./genero-form.component.css'],
-    standalone: true,
     imports: [FormsModule, ReactiveFormsModule, NgIf, RouterLink]
 })
 export class GeneroFormComponent implements OnInit {

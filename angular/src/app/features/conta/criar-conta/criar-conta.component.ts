@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
     selector: 'app-criar-conta',
     templateUrl: './criar-conta.component.html',
     styleUrls: ['./criar-conta.component.css'],
-    standalone: true,
     imports: [FormsModule]
 })
 export class CriarContaComponent implements OnInit {

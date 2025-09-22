@@ -7,8 +7,7 @@ import { RouterLink } from '@angular/router';
     selector: 'app-livro-list-item',
     templateUrl: './livro-list-item.component.html',
     styleUrls: ['./livro-list-item.component.css'],
-    standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink]
 })
 export class LivroListItemComponent implements OnInit {
 

@@ -13,7 +13,6 @@ import { NgFor } from '@angular/common';
     selector: 'app-livro-form',
     templateUrl: './livro-form.component.html',
     styleUrls: ['./livro-form.component.css'],
-    standalone: true,
     imports: [FormsModule, NgFor, RouterLink]
 })
 export class LivroFormComponent implements OnInit {

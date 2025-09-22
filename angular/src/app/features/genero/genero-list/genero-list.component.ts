@@ -12,7 +12,6 @@ import { GeneroListItemComponent } from '../genero-list-item/genero-list-item.co
     selector: 'app-genero-list',
     templateUrl: './genero-list.component.html',
     styleUrls: ['./genero-list.component.css'],
-    standalone: true,
     imports: [RouterLink, NgIf, NgFor, GeneroListItemComponent, AsyncPipe]
 })
 

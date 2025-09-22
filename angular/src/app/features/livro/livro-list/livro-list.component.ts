@@ -9,7 +9,6 @@ import { LivroListItemComponent } from '../livro-list-item/livro-list-item.compo
     selector: 'app-livro-list',
     templateUrl: './livro-list.component.html',
     styleUrls: ['./livro-list.component.css'],
-    standalone: true,
     imports: [RouterLink, NgIf, NgFor, LivroListItemComponent]
 })
 export class LivroListComponent implements OnInit {

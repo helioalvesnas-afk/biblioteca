@@ -6,7 +6,6 @@ import { ContaService } from '../../core/services/conta.service';
     selector: 'app-inicio',
     templateUrl: './inicio.component.html',
     styleUrls: ['./inicio.component.css'],
-    standalone: true,
     imports: [RouterLink, RouterOutlet]
 })
 export class InicioComponent implements OnInit {
