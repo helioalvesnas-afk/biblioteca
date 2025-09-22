@@ -13,14 +13,16 @@
     <div class="form-group">
       <label for="nome">Nome</label>
       <input id="nome" type="text" formControlName="nome" class="form-control">
-      <div *ngIf="generoForm.get('nome')?.invalid && generoForm.get('nome')?.touched">
-        O nome é obrigatório
-      </div>
+      @if (generoForm.get('nome')?.invalid && generoForm.get('nome')?.touched) {
+        <div>
+          O nome é obrigatório
+        </div>
+      }
     </div>
 
     <button type="submit" [disabled]="generoForm.invalid" class="btn btn-primary mr-2">Salvar</button>
     <button type="button" class="btn btn-secondary" [routerLink]="['/generos']"
-      class="btn btn-secondary">Cancelar</button>
+    class="btn btn-secondary">Cancelar</button>
   </form>
 
 

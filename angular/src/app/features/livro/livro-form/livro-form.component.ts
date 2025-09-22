@@ -7,13 +7,13 @@ import { Autor } from '../../../shared/models/autor';
 import { Genero } from '../../../shared/models/genero';
 import { Livro } from '../../../shared/models/livro';
 import { FormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
+
 
 @Component({
     selector: 'app-livro-form',
     templateUrl: './livro-form.component.html',
     styleUrls: ['./livro-form.component.css'],
-    imports: [FormsModule, NgFor, RouterLink]
+    imports: [FormsModule, RouterLink]
 })
 export class LivroFormComponent implements OnInit {
   livro: Livro = new Livro();

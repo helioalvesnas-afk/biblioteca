@@ -2,17 +2,23 @@
 <hr />
 
 <button type="button" class="btn btn-primary mb-2" [routerLink]="['/livros/new']">
-    Novo
+  Novo
 </button>
 
 <section>
-    <div *ngIf="livros.length == 0" class="alert alert-warning" role="alert">
-        Nenhum genero foi cadastrado ainda.
+  @if (livros.length == 0) {
+    <div class="alert alert-warning" role="alert">
+      Nenhum genero foi cadastrado ainda.
     </div>
+  }
 
-    <ul class="list-group" *ngIf="livros.length > 0" >
-        <li class="list-group-item" *ngFor="let livro of livros">
-            <app-livro-list-item [livro]="livro" class="livro-item" (onDelete)="onDeleted($event)"></app-livro-list-item>
+  @if (livros.length > 0) {
+    <ul class="list-group" >
+      @for (livro of livros; track livro) {
+        <li class="list-group-item">
+          <app-livro-list-item [livro]="livro" class="livro-item" (onDelete)="onDeleted($event)"></app-livro-list-item>
         </li>
+      }
     </ul>
+  }
 </section>

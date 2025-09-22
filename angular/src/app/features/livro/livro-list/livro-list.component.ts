@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { LivroService } from '../../../core/services/livro.service';
 import { Livro } from '../../../shared/models/livro';
 import { RouterLink } from '@angular/router';
-import { NgIf, NgFor } from '@angular/common';
+
 import { LivroListItemComponent } from '../livro-list-item/livro-list-item.component';
 
 @Component({
     selector: 'app-livro-list',
     templateUrl: './livro-list.component.html',
     styleUrls: ['./livro-list.component.css'],
-    imports: [RouterLink, NgIf, NgFor, LivroListItemComponent]
+    imports: [RouterLink, LivroListItemComponent]
 })
 export class LivroListComponent implements OnInit {
   livros: Livro[] = [];

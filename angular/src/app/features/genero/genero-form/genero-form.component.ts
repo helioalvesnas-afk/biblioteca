@@ -8,13 +8,13 @@ import { Genero } from '../../../shared/models/genero';
 import selectorGenero from '../../../core/state/selectors/genero.selectors';
 import { ApiResponse } from '../../../shared/dto/api-response';
 import { GenericMapper } from '../../../shared/Mapper/generic-mapper';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'app-genero-form',
     templateUrl: './genero-form.component.html',
     styleUrls: ['./genero-form.component.css'],
-    imports: [FormsModule, ReactiveFormsModule, NgIf, RouterLink]
+    imports: [FormsModule, ReactiveFormsModule, RouterLink]
 })
 export class GeneroFormComponent implements OnInit {
   generoForm!: FormGroup;
