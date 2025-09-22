@@ -23,6 +23,7 @@
     "@ngrx/data": "^19.2.1",
     "@ngrx/effects": "^19.2.1",
     "@ngrx/entity": "^19.2.1",
+    "@ngrx/operators": "^19.2.1",
     "@ngrx/router-store": "^19.2.1",
     "@ngrx/signals": "^19.2.1",
     "@ngrx/store": "^19.2.1",
@@ -32,7 +33,6 @@
     "tslib": "^2.6.2",
     "typescript": "~5.9.2",
     "zone.js": "^0.15.1",
-    "@ngrx/operators": "^18.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~20.3.2",
