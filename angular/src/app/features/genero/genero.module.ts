@@ -12,7 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         FormsModule,
         ReactiveFormsModule,
         GeneroRoutingModule,
-        GeneroFormComponent, GeneroListComponent, GeneroListItemComponent
+        GeneroFormComponent, 
+        GeneroListComponent, 
+        GeneroListItemComponent
     ],
     exports: [GeneroFormComponent, GeneroListComponent, GeneroListItemComponent],
 })

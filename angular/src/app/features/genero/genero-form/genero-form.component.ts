@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -14,7 +14,8 @@ import { GenericMapper } from '../../../shared/Mapper/generic-mapper';
     selector: 'app-genero-form',
     templateUrl: './genero-form.component.html',
     styleUrls: ['./genero-form.component.css'],
-    imports: [FormsModule, ReactiveFormsModule, RouterLink]
+    imports: [FormsModule, ReactiveFormsModule, RouterLink],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GeneroFormComponent implements OnInit {
   generoForm!: FormGroup;

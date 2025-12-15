@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as generoActions from '../../../core/state/actions/genero.actions';
 import selectorGenero from '../../../core/state/selectors/genero.selectors';
@@ -12,7 +12,8 @@ import { GeneroListItemComponent } from '../genero-list-item/genero-list-item.co
     selector: 'app-genero-list',
     templateUrl: './genero-list.component.html',
     styleUrls: ['./genero-list.component.css'],
-    imports: [RouterLink, GeneroListItemComponent, AsyncPipe]
+    imports: [RouterLink, GeneroListItemComponent, AsyncPipe],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class GeneroListComponent implements OnInit {
